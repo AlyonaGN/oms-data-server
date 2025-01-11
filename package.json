@@ -4,9 +4,10 @@
    "main": "index.js",
    "scripts": {
       "build": "tsc",
-      "start": "ts-node src/index.ts",
-      "dev": "tsc --watch",
-      "typeorm": "typeorm-ts-node-commonjs"
+      "start": "node dist/index.js",
+      "db:migrate:gen": "npm run build && npx typeorm migration:generate src/migration/AutoMigration -d dist/data-source.js",
+      "db:migrate": "npm run build && npx typeorm migration:run -d dist/data-source.js",
+      "db:seed": "npm run build && node dist/seed.js"
    },
    "keywords": [],
    "author": "",
